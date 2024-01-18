@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+    stages{
+        stage('Code Checkout'){
+            steps{
+                 git url: 'https://github.com/Salmansadiq809545/DevOpsClassCodes/'
+            }
+        }
+        stage('Code Compile')
+        {
+            steps{
+                sh 'mvn compile'
+                echo 'Mvn'
+            }
+        }
+        stage('Code Test')
+        {
+            steps{
+                sh 'mvn test'
+                 echo 'Mvn'
+            }
+        }
+        stage('Code Qa')
+        {
+            steps{
+                sh 'mvn checkstyle:checkstyle'
+                 echo 'Mvn'
+            }
+        }
+        stage('Code package')
+        {
+            steps{
+                sh 'mvn package'
+                 echo 'Mvn'
+            }
+        }
+    }
+}
